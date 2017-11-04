@@ -3,15 +3,14 @@
 // path is a node module that helps take a bunch of data and concatenate it into actual cross-platform/os compatible file paths while also eliminating redundancies (like if you concatenated '../' whatever the previous path piece was would automatically be removed)
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');// this is a module that takes all the css out of thebundle.js file and puts it in a separate file. we define how this i sdone below
-const dotenv = require('dotenv');
 const webpack = require('webpack');
 
 // preocess.env.NODE_ENV is a process variable that stores the environment you are currently in. Heroku automatically sets this to production. we want to set it to test when testing and undefined when we are developing. This script is in packages.json. Alos need the cross-env module to make the script for that run the same in different operating systems
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';// if the variable is undefined (not defined by our test script with cross-env module, nor automatically by heroku, it will be undefined, and we will set it to 'development')
 if (process.env.NODE_ENV === 'test') { // want to set all the key value pairs we have set up for the different databases in the .env.test and .env.development files, and there is an npm module that does this for us called 'dotenv(it takes all the key value pairs from .env files and sets them here automatically)'
-  dotenv.config({ path: '.env.test' }); // dotenv returns an object with a config method, and we need to pass in our config options to this method, including the special filenames like .env.test, since it usually just looks for .env without the test or development post extenstion
+  require('dotenv').config({ path: '.env.test' }); // dotenv returns an object with a config method, and we need to pass in our config options to this method, including the special filenames like .env.test, since it usually just looks for .env without the test or development post extenstion
 } else if (process.env.NODE_ENV === 'development') {
-  dotenv.config({ path: '.env.development' });// after this we need to use a webpack function to manually pass down our node environment variables into bundle.js (they don't go to client side javascript automatically because it is a huge security risk if anyone could access these private variables that allow the manipulation of your project)
+  require('dotenv').config({ path: '.env.development' });// after this we need to use a webpack function to manually pass down our node environment variables into bundle.js (they don't go to client side javascript automatically because it is a huge security risk if anyone could access these private variables that allow the manipulation of your project)
 } // this manual passing-down of these NODE_ENV variables and config info to client side js is done below in the plugins (new webpack.DefinePlugin)
 
 
