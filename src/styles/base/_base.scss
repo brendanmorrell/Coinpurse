@@ -1,0 +1,21 @@
+html {
+  font-size: 62.5%;//converts rems which are a base of 16px to the same number as px size. just easier to remember, so now each rem is equivalent to a pixel in size but will scale better
+}
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: $m-size;
+}
+
+button {
+  cursor: pointer;
+  border-radius: $s-border-radius;
+}
+
+button:disabled {
+  cursor:default;
+  opacity:$disabled;
+}
+
+.is-active {
+  font-weight: bold;
+}
