@@ -18,6 +18,7 @@
       }
     ],
     "arrow-parens": 0,
+    "arrow-spacing": 1,
     "one-var": 0,
     "one-var-declaration-per-line": 0,
     "padded-blocks": 1,

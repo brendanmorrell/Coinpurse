@@ -25,7 +25,6 @@ test('should filter by startDate', () => {
     endDate: undefined,
     sortReverse: false,
   };
-
   const result = selectExpenses(expenses, filters);
   expect(result).toEqual([expenses[2], expenses[0]]);
 });
