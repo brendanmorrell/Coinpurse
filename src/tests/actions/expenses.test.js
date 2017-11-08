@@ -60,6 +60,24 @@ test('should setup edit expense action object', () => {
   });
 });
 
+test('should edit expense', (done) => {
+  const store = createMockStore({});
+  const expenseId = expenses[1].id;
+  const { id, ...updates } = expenses[2];// complicated thing I looked up to remove a single property (id) from an object you clone
+  store.dispatch(startEditExpense(expenseId, updates)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'EDIT_EXPENSE',
+      id: expenseId,
+      updates,
+    });
+    return database.ref(`expenses/${expenseId}`).once('value');
+  }).then((snapshot) => {
+    expect(snapshot.val()).toEqual(updates);
+    done();
+  });
+});
+
 test('should setup add expense action object with provided values', () => {
   const action = addExpense(expenses[2]);
   expect(action).toEqual({
