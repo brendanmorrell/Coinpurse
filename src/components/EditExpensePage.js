@@ -8,11 +8,11 @@ import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 export class EditExpensePage extends React.Component {
   onSubmit = (expense) => {
     this.props.startEditExpense(this.props.expense.id, expense);// here and below we can use props.match or props.expense since they are both being sent into the EditExpensePage component
-    this. props.history.push('/');
+    this. props.history.push('/dashboard');
   };
   onRemove = () => {
     this.props.startRemoveExpense(this.props.expense.id);
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   };
   render() {
     return (

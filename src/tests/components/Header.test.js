@@ -5,7 +5,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 // import toJSON from 'enzyme-to-json';
 // ^no longer necessary when enzyme-to-jason's snapshot serializer is set in the config file
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
+import { startLogout } from '../../actions/auth';
 
 // redo this now with enzyme
 // test('should render Header correctly', () => {
@@ -15,9 +16,15 @@ import Header from '../../components/Header';
 //   expect(output).toMatchSnapshot(); // this is a jest command that takes a snapshot of the rendered output and saves it to a file (__snapshots__ folder). It compares the current snapshot with whatever the previous rendered snapshot was (thus, the first call to this will always pass, because it just creates a new one which will obs match itself)
 // });
 
+let startLogoutSpy, wrapper;
+
+beforeEach(() => {
+  startLogoutSpy = jest.fn();
+  wrapper = shallow(<Header startLogout={startLogoutSpy} />);
+});
 
 test('should render Header correctly', () => {
-  const wrapper = shallow(<Header />);// you pass in the JSX you want to shallow render into this wrapper variable
+  // const wrapper = shallow(<Header startLogout={() => {}} />);// you pass in the JSX you want to shallow render into this wrapper variable
   // REACTSHALLOW RENDER SETUP (the code below is basic, and you don't need to wrapper line, above. Also not very useful. Enzyme is much better)
 
   //  expect(wrapper.find('h1').length).toBe(1);
@@ -33,4 +40,10 @@ test('should render Header correctly', () => {
   // ]
   // to the setup file, before or after the "setupFiles" key and then you can run the file as it is written below without importing
   expect(wrapper).toMatchSnapshot();
+});
+
+
+test('expect startLogout to have been called on click', () => {
+  wrapper.find('button').simulate('click');
+  expect(startLogoutSpy).toHaveBeenCalled();
 });

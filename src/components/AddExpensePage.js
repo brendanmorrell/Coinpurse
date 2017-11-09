@@ -7,7 +7,7 @@ import { startAddExpense, addExpense } from '../actions/expenses';
 export class AddExpensePage extends React.Component {
   onSubmit = (expense) => {
     this.props.startAddExpense(expense);
-    this.props.history.push('/');// this is an included action on react components. you can see it in the react devtools. PUSh takes a single argument which is the address you want to go to, just like links
+    this.props.history.push('/dashboard');// this is an included action on react components. you can see it in the react devtools. PUSh takes a single argument which is the address you want to go to, just like links
   };
   render () {
     return (
