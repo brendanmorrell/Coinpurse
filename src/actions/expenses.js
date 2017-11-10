@@ -22,7 +22,8 @@ export const addExpense = (expense) => ({
 });
 
 export const startAddExpense = (expenseData = {}) => {
-  return (dispatch) => { // this is the function we will be sending now that we have redux-thunk as opposed to just sending the object we originally sent
+  return (dispatch, getState) => { // this is the function we will be sending now that we have redux-thunk as opposed to just sending the object we originally sent
+    const { uid } = getState().auth;
     const {
       description = '',
       note = '',
@@ -32,7 +33,7 @@ export const startAddExpense = (expenseData = {}) => {
 
     const expense = { description, note, amount, createdAt };
 
-    return database.ref('expenses').push(expense).then((ref) => { // the return is for promise chaining in the test file
+    return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => { // the return is for promise chaining in the test file
       dispatch(addExpense({
         id: ref.key,
         ...expense,
@@ -48,8 +49,9 @@ export const removeExpense = id => ({
 });
 
 export const startRemoveExpense = id => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).remove().then(() => {
+  return (dispatch, getState) => {
+    const { uid } = getState().auth;
+    return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
       dispatch(removeExpense(id));
     });
   };
@@ -63,8 +65,9 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`)
+  return (dispatch, getState) => {
+    const { uid } = getState().auth;
+    return database.ref(`users/${uid}/expenses/${id}`)
       .update(updates)
       .then(() => {
         return dispatch(editExpense(id, updates));
@@ -80,8 +83,9 @@ export const setExpenses = (expenses) => ({
 
 // START_SET_EXPENSES
 export const startSetExpenses = () => {
-  return (dispatch) => {
-    return database.ref('expenses').once('value').then((snapshot) => {
+  return (dispatch, getState) => {
+    const { uid } = getState().auth;
+    return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
       const expenses = [];
 
       snapshot.forEach((childSnapshot) => {
