@@ -12,11 +12,11 @@ import { startAddExpense,
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
-
+const uid = '123abc';
+const defaultAuthState = { auth: { uid } };
 const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) => {
-  const uid = '123abc';
   const expensesData = {};
   expenses.forEach(({ id, description, note, amount, createdAt }) => {
     expensesData[id] = { description, note, amount, createdAt };
@@ -34,7 +34,7 @@ test('should setup remove expense action object', () => {
 });
 
 test('should dispatch removeExpense and remove expense from firebase', (done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const { id } = expenses[2];
   store.dispatch(startRemoveExpense(id)).then(() => {
     const actions = store.getActions();
@@ -62,7 +62,7 @@ test('should setup edit expense action object', () => {
 });
 
 test('should edit expense', (done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const expenseId = expenses[1].id;
   const { id, ...updates } = expenses[2];// complicated thing I looked up to remove a single property (id) from an object you clone
   store.dispatch(startEditExpense(expenseId, updates)).then(() => {
@@ -88,7 +88,7 @@ test('should setup add expense action object with provided values', () => {
 });
 
 test('should add expense to database and store', (done) => { // must add done so that jest waits for the done call before checking to see if there were any errors, otherwise, it will run through the code, the promises won't have run yet, and since no errors will have come back, it will think it passed even though an error would have been thrown when the promises returned
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const expenseData = {
     description: expenses[0].description,
     amount: expenses[0].amount,
@@ -112,7 +112,7 @@ test('should add expense to database and store', (done) => { // must add done so
 });
 
 test('should add expense with defaults to database and store', (done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const expenseDefaults = {
     description: '',
     amount: 0,
@@ -147,7 +147,7 @@ test('should setup set expense object with data', () => {
 
 
 test('should fetch expenses from firebase', (done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   store.dispatch(startSetExpenses()).then(() => {
     const actions = store.getActions();
     expect(actions[0]).toEqual({
