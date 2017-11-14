@@ -23,6 +23,7 @@ export class ExpenseListFilters extends React.Component {
     return this.props.sortByAmount();
   };
   onSortReverse = () => {
+    this.setState((prevState) => ({ filtersReversed: !prevState }));
     this.props.sortReverse();
   };
   setTextFilter = (e) => {
@@ -51,7 +52,7 @@ export class ExpenseListFilters extends React.Component {
               <option className="option" value="amount">Amount</option>
             </select>
             <button
-              className="reverse-filter-button"
+              className={this.props.filters.sortReverse ? "filters-reversed" : "filters-normal"}
               onClick={this.onSortReverse}
             />
           </div>

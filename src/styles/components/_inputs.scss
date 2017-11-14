@@ -19,8 +19,18 @@
   resize: none;
 }
 
-.reverse-filter-button {
+.filters-normal {
   background: url('/images/arrow-down.png');
+  border:1px solid #cacccd;
+  border-radius: 0;
+  border-left: none;
+  background-size: 100% 100%;
+  margin-left: 0;
+  width: 50px;
+  height: 50px;
+}
+.filters-reversed {
+  background: url('/images/arrow-up.png');
   border:1px solid #cacccd;
   border-radius: 0;
   border-left: none;
