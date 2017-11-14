@@ -19,7 +19,7 @@ module.exports = (env) => { // we configured what value env is in package.json f
   const CSSExtract = new ExtractTextPlugin('styles.css'); // this constructor function is going to create this styles file when the project builds
 
   return {
-    entry: './src/app.js',
+    entry: ['babel-polyfill', './src/app.js'],
     output: {
       path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js',
