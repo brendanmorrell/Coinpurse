@@ -65,6 +65,7 @@ test('should edit expense', (done) => {
   const store = createMockStore(defaultAuthState);
   const expenseId = expenses[1].id;
   const { id, ...updates } = expenses[2];// complicated thing I looked up to remove a single property (id) from an object you clone
+  if (id); // just to make the linter stop bitching about id never being used. no actual purpose
   store.dispatch(startEditExpense(expenseId, updates)).then(() => {
     const actions = store.getActions();
     expect(actions[0]).toEqual({
@@ -157,5 +158,3 @@ test('should fetch expenses from firebase', (done) => {
     done();
   });
 });
-
-test()

@@ -1,9 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;//converts rems which are a base of 16px to the same number as px size. just easier to remember, so now each rem is equivalent to a pixel in size but will scale better
 }
+
 body {
+  color: $dark-grey;;
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
+  line-height: 1.6;
 }
 
 button {

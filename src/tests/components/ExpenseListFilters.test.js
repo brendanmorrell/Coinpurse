@@ -102,7 +102,7 @@ test('should sort by amount', () => {
 
 
 test('should reverse sorting', () => {
-  wrapper.find('input').at(1).prop('onChange')();
+  wrapper.find('button').prop('onClick')();
   expect(sortReverseSpy).toHaveBeenCalled();
 });
 // ALTERNATE

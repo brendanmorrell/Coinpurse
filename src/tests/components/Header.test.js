@@ -6,7 +6,6 @@ import { shallow } from 'enzyme';
 // import toJSON from 'enzyme-to-json';
 // ^no longer necessary when enzyme-to-jason's snapshot serializer is set in the config file
 import { Header } from '../../components/Header';
-import { startLogout } from '../../actions/auth';
 
 // redo this now with enzyme
 // test('should render Header correctly', () => {
@@ -16,11 +15,11 @@ import { startLogout } from '../../actions/auth';
 //   expect(output).toMatchSnapshot(); // this is a jest command that takes a snapshot of the rendered output and saves it to a file (__snapshots__ folder). It compares the current snapshot with whatever the previous rendered snapshot was (thus, the first call to this will always pass, because it just creates a new one which will obs match itself)
 // });
 
-let startLogoutSpy, wrapper;
+let dispatchStartLogoutPropSpy, wrapper;
 
 beforeEach(() => {
-  startLogoutSpy = jest.fn();
-  wrapper = shallow(<Header startLogout={startLogoutSpy} />);
+  dispatchStartLogoutPropSpy = jest.fn();
+  wrapper = shallow(<Header dispatchStartLogoutProp={dispatchStartLogoutPropSpy} />);
 });
 
 test('should render Header correctly', () => {
@@ -43,7 +42,7 @@ test('should render Header correctly', () => {
 });
 
 
-test('expect startLogout to have been called on click', () => {
+test('expect dispatchStartLogout to have been called on click', () => {
   wrapper.find('button').simulate('click');
-  expect(startLogoutSpy).toHaveBeenCalled();
+  expect(dispatchStartLogoutPropSpy).toHaveBeenCalled();
 });

@@ -1,25 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import  'react-dates/lib/css/_datepicker.css';
+import 'react-dates/lib/css/_datepicker.css';
 
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, sortReverse } from '../actions/filters';
 
 export class ExpenseListFilters extends React.Component {
   state = {
     calendarFocused: null,
-    sortReverse: false,
   };
-  onDatesChange = ({ startDate, endDate }) => {// he says an object gets passed into this that he destructures. try this without destructuring to see if you understand
+  onDatesChange = ({ startDate, endDate }) => { // he says an object gets passed into this that he destructures. try this without destructuring to see if you understand
     this.props.setStartDate(startDate);
     this.props.setEndDate(endDate);
   };
   onFocusChange = (calendarFocused) => {
     this.setState(() => ({ calendarFocused }));
-  };
-
-  setTextFilter = (e) => {
-    this.props.setTextFilter(e.target.value);
   };
   onSortTypeChange = (e) => {
     if (e.target.value === 'date') {
@@ -30,52 +25,65 @@ export class ExpenseListFilters extends React.Component {
   onSortReverse = () => {
     this.props.sortReverse();
   };
+  setTextFilter = (e) => {
+    this.props.setTextFilter(e.target.value);
+  };
   render() {
     return (
-      <div>
-        <input
-          type="text"
-          placeholder="Search expenses..."
-          value={this.props.filters.text}
-          onChange={this.setTextFilter}
-        />
-        <select
-          value={this.props.filters.sortBy}
-          onChange={this.onSortTypeChange}
-        >
-          <option value="date">Date</option>
-          <option value="amount">Amount</option>
-        </select>
-        <input
-          type="checkbox"
-          onChange={this.onSortReverse}
-        />
-        <DateRangePicker
-          startDate={this.props.filters.startDate}
-          endDate={this.props.filters.endDate}
-          onDatesChange={this.onDatesChange}
-          focusedInput={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          showClearDates={true}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
+      <div className="content-container">
+        <div className="input-group">
+          <div className="input-group__item">
+            <input
+              type="text"
+              className="text-input"
+              placeholder="Search expenses"
+              value={this.props.filters.text}
+              onChange={this.setTextFilter}
+            />
+          </div>
+          <div className="input-filter-combo">
+            <select
+              className="select"
+              value={this.props.filters.sortBy}
+              onChange={this.onSortTypeChange}
+            >
+              <option className="option" value="date">Date</option>
+              <option className="option" value="amount">Amount</option>
+            </select>
+            <button
+              className="reverse-filter-button"
+              onClick={this.onSortReverse}
+            />
+          </div>
+          <div className="input-group__item">
+            <DateRangePicker
+              startDate={this.props.filters.startDate}
+              endDate={this.props.filters.endDate}
+              onDatesChange={this.onDatesChange}
+              focusedInput={this.state.calendarFocused}
+              onFocusChange={this.onFocusChange}
+              showClearDates={true}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+            />
+          </div>
+        </div>
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = (state) => ({
-  filters: state.filters
+  filters: state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setStartDate: (startDate) => dispatch(setStartDate(startDate)),
-    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
-    setTextFilter: (text) => dispatch(setTextFilter(text)),
-    sortByDate: () => dispatch(sortByDate()),
-    sortByAmount: () => dispatch(sortByAmount()),
-    sortReverse: () => dispatch(sortReverse()),
+  setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+  setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  sortByDate: () => dispatch(sortByDate()),
+  sortByAmount: () => dispatch(sortByAmount()),
+  sortReverse: () => dispatch(sortReverse()),
 });
 
 

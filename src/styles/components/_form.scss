@@ -1,0 +1,12 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  > * { //direct descendents and then select all of them with the universal selector
+    margin-bottom: $m-size;
+  }
+}
+
+.form__error {
+  margin: 0 0 $m-size;
+  font-style: italic;
+}

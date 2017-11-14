@@ -7,20 +7,20 @@ import 'normalize.css/normalize.css';
 import { firebase } from './firebase/firebase';
 // REACT
 import AppRouter, { history } from './routers/AppRouter';
+import LoadingPage from './components/LoadingPage';
 // REDUX
 import store from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
 import { login, logout } from './actions/auth';
 // CSS
 import './styles/styles.scss';
-import 'react-dates/lib/css/_datepicker.css'// the relevant styling provided by airbnb
 
 
 
 
 
 
-const state = store.getState();
+store.getState();
 
 
 const jsx = (
@@ -40,7 +40,7 @@ const renderApp = () => {
 };
 
 
-ReactDOM.render(<p>Loading...</p>, rootApp);
+ReactDOM.render(<LoadingPage />, rootApp);
 
 
 

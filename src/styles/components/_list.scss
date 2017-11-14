@@ -1,0 +1,64 @@
+.list-header {
+  background: $light-grey;
+  border: 1px solid darken($light-grey, 7%);
+  color: $dark-grey; //he put this as grey which i don't seem to have
+  display: flex;
+  justify-content: space-between;
+  padding:$s-size $m-size;
+}
+
+.list-body {
+  margin-bottom: $l-size;
+  @media(max-width: $mobile-breakpoint) {
+    margin-bottom: $m-size;
+  }
+}
+
+.list-item {
+  align-items: center;
+  border: 1px solid darken($light-grey, 7%);
+  border-top: none;
+  color: $dark-grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: $m-size;
+  text-decoration: none;
+  transition: background .3s ease;
+  &:hover { // scss feature to target same thing like making another that is .list-item:hover
+    background: $light-grey;
+  };
+  @media(max-width: $mobile-breakpoint) {
+    flex-direction: column;
+    padding: $s-size;
+  }
+}
+
+.list-item--message {
+  @extend .list-item;
+  align-items: center;
+  color: $grey;
+  justify-content: center;
+  padding: $m-size;
+  &:hover {
+    background: none;
+  }
+}
+
+.list-item__title {
+  margin: 0;
+  word-break:break-all;
+}
+
+.list-item__subtitle {
+  color: $grey;
+  font-size: $font-size-small;
+}
+
+.list-item__data {
+  margin: 0;
+  padding-left: $s-size;
+  @media(max-width: $mobile-breakpoint) {
+    margin: $s-size 0 0;
+  }
+}
