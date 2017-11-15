@@ -8,10 +8,15 @@ import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, sort
 export class ExpenseListFilters extends React.Component {
   state = {
     calendarFocused: null,
+    dateMessage: null,
   };
   onDatesChange = ({ startDate, endDate }) => { // he says an object gets passed into this that he destructures. try this without destructuring to see if you understand
     this.props.setStartDate(startDate);
     this.props.setEndDate(endDate);
+    if (startDate === null && endDate === null) {
+      return this.setState(() => ({ dateMessage: 'Date format is DD/MM/YYYY' }));
+    }
+    return this.setState(() => ({ dateMessage: null }));
   };
   onFocusChange = (calendarFocused) => {
     this.setState(() => ({ calendarFocused }));
@@ -80,6 +85,7 @@ export class ExpenseListFilters extends React.Component {
               />
             </div>
           </div>
+          {this.state.dateMessage && <p className="date-message justify-right ">{this.state.dateMessage}</p>}
           <div className="input-group__button">
             <button
               className="button--clear-filters"
