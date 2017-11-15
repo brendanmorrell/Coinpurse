@@ -18,3 +18,16 @@
 .button--secondary {
   background: #888;
 }
+
+.button--clear-filters {
+  border: none;
+  border-radius: 0;
+  font-size: $font-size-large;
+  font-weight:$s-weight;
+  line-height: 1;
+  padding: $s-size;
+  margin-bottom: $s-size;
+  margin-top: $s-size;
+  background: darken($light-grey, 10);
+  width: 100%;
+}

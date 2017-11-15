@@ -29,44 +29,63 @@ export class ExpenseListFilters extends React.Component {
   setTextFilter = (e) => {
     this.props.setTextFilter(e.target.value);
   };
+  clearAllFilters = () => {
+    this.props.setTextFilter('');
+    this.props.setStartDate(null);
+    this.props.setEndDate(null);
+    this.props.sortByDate();
+    if (this.props.filters.sortReverse) {
+      return this.props.sortReverse();
+    }
+    return undefined;
+  };
   render() {
     return (
-      <div className="content-container">
-        <div className="input-group">
-          <div className="input-group__item">
-            <input
-              type="text"
-              className="text-input"
-              placeholder="Search expenses"
-              value={this.props.filters.text}
-              onChange={this.setTextFilter}
-            />
+      <div>
+        <div className="content-container">
+          <div className="input-group">
+            <div className="input-group__item">
+              <input
+                type="text"
+                className="text-input"
+                placeholder="Search expenses"
+                value={this.props.filters.text}
+                onChange={this.setTextFilter}
+              />
+            </div>
+            <div className="input-filter-combo">
+              <select
+                className="select"
+                value={this.props.filters.sortBy}
+                onChange={this.onSortTypeChange}
+              >
+                <option className="option" value="date">Date</option>
+                <option className="option" value="amount">Amount</option>
+              </select>
+              <button
+                className={this.props.filters.sortReverse ? "filters-reversed" : "filters-normal"}
+                onClick={this.onSortReverse}
+              />
+            </div>
+            <div className="input-group__item">
+              <DateRangePicker
+                startDate={this.props.filters.startDate}
+                endDate={this.props.filters.endDate}
+                onDatesChange={this.onDatesChange}
+                focusedInput={this.state.calendarFocused}
+                onFocusChange={this.onFocusChange}
+                showClearDates={true}
+                numberOfMonths={1}
+                isOutsideRange={() => false}
+              />
+            </div>
           </div>
-          <div className="input-filter-combo">
-            <select
-              className="select"
-              value={this.props.filters.sortBy}
-              onChange={this.onSortTypeChange}
-            >
-              <option className="option" value="date">Date</option>
-              <option className="option" value="amount">Amount</option>
-            </select>
+          <div className="input-group__button">
             <button
-              className={this.props.filters.sortReverse ? "filters-reversed" : "filters-normal"}
-              onClick={this.onSortReverse}
-            />
-          </div>
-          <div className="input-group__item">
-            <DateRangePicker
-              startDate={this.props.filters.startDate}
-              endDate={this.props.filters.endDate}
-              onDatesChange={this.onDatesChange}
-              focusedInput={this.state.calendarFocused}
-              onFocusChange={this.onFocusChange}
-              showClearDates={true}
-              numberOfMonths={1}
-              isOutsideRange={() => false}
-            />
+              className="button--clear-filters"
+              onClick={this.clearAllFilters}
+            >Clear All Filters
+            </button>
           </div>
         </div>
       </div>

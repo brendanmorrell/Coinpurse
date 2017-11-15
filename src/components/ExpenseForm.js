@@ -68,32 +68,34 @@ export default class ExpenseForm extends React.Component {
     return (
       <form className="form" onSubmit={this.onSubmit}>
         {this.state.errorDescription && <p className="form__error">{this.state.errorDescription}</p>}
-        {this.state.errorAmount && <p className="form__error">{this.state.errorAmount}</p>}
-        {this.state.errorDate && <p className="form__error">{this.state.errorDate}</p>}
         <input
           type="text"
           placeholder="Description"
           autoFocus
-          className="text-input"
+          className={this.state.errorDescription ? "text-input form-box-error" : "text-input"}
           value={this.state.description}
           onChange={this.onDescriptionChange}
         />
+        {this.state.errorAmount && <p className="form__error">{this.state.errorAmount}</p>}
         <input
           type="text"
           placeholder="Amount"
-          className="text-input"
+          className={this.state.errorAmount ? "text-input form-box-error" : "text-input"}
           value={this.state.amount}
           onChange={this.onAmountChange}
         />
-        <SingleDatePicker// date ondatechange focused and onfocuschange are all required props of the component. there are additional optional ones you can add too
-          date={this.state.createdAt}
-          onDateChange={this.onDateChange}
-          focused={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          // the below props are optional
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />{this.state.dateMessage && <p>{this.state.dateMessage}</p>}
+        {this.state.dateMessage && <span>{this.state.errorDate ? <p className="form__error">{this.state.errorDate}</p> : <p className="date-message">{this.state.dateMessage}</p>}</span>}
+        <div className={this.state.errorDate ? "sdp-wrapper sdp-wrapper-error" : "sdp-wrapper"}>
+          <SingleDatePicker// date ondatechange focused and onfocuschange are all required props of the component. there are additional optional ones you can add too
+            date={this.state.createdAt}
+            onDateChange={this.onDateChange}
+            focused={this.state.calendarFocused}
+            onFocusChange={this.onFocusChange}
+            // the below props are optional
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+          />
+        </div>
         <textarea
           placeholder="Add a note for your expense (optional)"
           className="text-area"

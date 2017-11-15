@@ -35,4 +35,5 @@ export default (expenses, {
     }
     return a.description > b.description ? -1 : 1;
   }
+  return undefined;
 });

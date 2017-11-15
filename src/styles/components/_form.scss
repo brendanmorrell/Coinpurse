@@ -7,6 +7,31 @@
 }
 
 .form__error {
-  margin: 0 0 $m-size;
+  color: #cc0000;
   font-style: italic;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.date-message {
+  color: #b0b1b1;
+  font-style: italic;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.form-box-error {
+  background: #fff0f4;
+  border: 1px solid #cc0000;
+}
+
+.sdp-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #fff0f4;
+}
+
+.sdp-wrapper-error {
+  background: #fff0f4;
+  border: 1px solid #cc0000;
 }

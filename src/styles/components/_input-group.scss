@@ -3,7 +3,6 @@
   flex-direction:row;
   justify-content: space-between;
   margin: 0;
-  margin-bottom: $l-size;
   @media (max-width: $mobile-breakpoint) {
     flex-direction:column;
     margin-bottom: $m-size;
@@ -19,8 +18,14 @@
 }
 
 .input-group__item {
-  margin:0 2px;
   @media (max-width: $mobile-breakpoint) {
+    margin-bottom: $m-size;
+  }
+}
+
+.input-group__button {
+  margin-bottom: $l-size;
+  @media(max-width: $mobile-breakpoint) {
     margin-bottom: $m-size;
   }
 }
