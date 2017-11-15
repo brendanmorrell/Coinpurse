@@ -4,6 +4,9 @@
   font-size: $font-size-large;
   font-weight: $s-weight;
   padding: $s-size;
+  @media(max-width: $mobile-breakpoint) {
+    width: 100%;
+  }
 }
 
 
@@ -11,6 +14,9 @@
   @extend .text-input;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
+  @media (max-width: $mobile-breakpoint) {
+    width: 80%;
+  }
 }
 
 .text-area {
@@ -38,4 +44,13 @@
   margin-left: 0;
   width: 50px;
   height: 50px;
+}
+
+.input-filter-button {
+  @media(max-width: $mobile-breakpoint) {
+    width:20%;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
 }

@@ -5,8 +5,6 @@
   margin: 0;
   @media (max-width: $mobile-breakpoint) {
     flex-direction:column;
-    margin-bottom: $m-size;
-    align-items: center;
   }
 }
 
@@ -14,12 +12,15 @@
   @extend .input-group;
   @media (max-width: $mobile-breakpoint) {
     flex-direction:row;
+    width: 100%;
+    margin-bottom: $xs-size;
   }
 }
 
 .input-group__item {
   @media (max-width: $mobile-breakpoint) {
-    margin-bottom: $m-size;
+    margin-bottom: $xs-size;
+    width: 100%;
   }
 }
 
@@ -27,5 +28,6 @@
   margin-bottom: $l-size;
   @media(max-width: $mobile-breakpoint) {
     margin-bottom: $m-size;
+    margin-top: 0;
   }
 }

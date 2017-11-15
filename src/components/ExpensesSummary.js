@@ -38,10 +38,15 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
         {expenseCount < 1 && <h1 className="page-header__title">No expenses found in database. Go out and spend some money!</h1>}
         {existingExpensesButFiltered() && <h1 className="page-header__title">No expenses match the current filter criteria</h1>}
         {visibleExpenseCount >= 1 && <h1 className="page-header__title">Viewing <span>{visibleExpenseCount}</span> {visibleExpenseWord} totalling <span>{formattedVisibleExpensesTotal}</span></h1>}
-        <div className="page-header__actions">
-          <Link className="button" to="/create">Add Expense</Link>
+        <div className="header-flex">
+          <div>
+            <Link className="button" to="/create">Add Expense</Link>
+          </div>
+          {expenseCount !== visibleExpenseCount &&
+            <div className="header-filter-message">
+              <span><span>{filteredExpensesCount}</span> {filteredExpensesCount === 1 ? 'expense is' : 'expenses are'} being filtered (<span>{formattedFilteredExpensesTotal}</span> total)</span>
+            </div>}
         </div>
-        {expenseCount !== visibleExpenseCount && <p>{filteredExpensesCount} {filteredExpensesCount === 1 ? 'expense is' : 'expenses are'} being filtered ({formattedFilteredExpensesTotal} total)</p>}
       </div>
     </div>
   );

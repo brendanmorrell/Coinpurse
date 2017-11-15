@@ -63,7 +63,7 @@ export class ExpenseListFilters extends React.Component {
                 <option className="option" value="amount">Amount</option>
               </select>
               <button
-                className={this.props.filters.sortReverse ? "filters-reversed" : "filters-normal"}
+                className={this.props.filters.sortReverse ? "filters-reversed input-filter-button" : "filters-normal input-filter-button"}
                 onClick={this.onSortReverse}
               />
             </div>
