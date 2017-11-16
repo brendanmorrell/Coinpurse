@@ -9,25 +9,39 @@
   line-height: 1;
   padding: $s-size;
   text-decoration: none;
+  &:hover {
+    background: darken($blue, 5);
+  }
 }
 
 .button--link {
   background: none;
+  &:hover {
+    background: none !important;
+    color: darken(white, 10);
+  }
 }
 
 .button--secondary {
   background: #888;
+  &:hover {
+    background-color: darken(#888, 10) !important;
+  }
 }
 
 .button--clear-filters {
   border: none;
   border-radius: 0;
+  color: white;
   font-size: $font-size-large;
   font-weight:$s-weight;
   line-height: 1;
   padding: $s-size;
   margin-bottom: $s-size;
   margin-top: $s-size;
-  background: darken($light-grey, 10);
+  background: #7f9ff2;
   width: 100%;
+  &:hover {
+    background: darken(#7f9ff2, 5);
+  }
 }

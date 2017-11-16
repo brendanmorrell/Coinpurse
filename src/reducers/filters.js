@@ -10,6 +10,8 @@ const filtersReducerDefaultState = {
   startDate: moment().startOf('month'),
   endDate: moment().endOf('month'),
   sortReverse: false,
+  minAmount: '',
+  maxAmount: '',
 };
 export default (state = filtersReducerDefaultState, action) => {
   switch (action.type) {
@@ -42,6 +44,16 @@ export default (state = filtersReducerDefaultState, action) => {
       return {
         ...state,
         endDate: action.endDate,
+      };
+    case 'SET_MIN_AMOUNT':
+      return {
+        ...state,
+        minAmount: action.minAmount,
+      };
+    case 'SET_MAX_AMOUNT':
+      return {
+        ...state,
+        maxAmount: action.maxAmount,
       };
     default:
       return state;

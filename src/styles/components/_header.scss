@@ -14,5 +14,8 @@
   text-decoration: none;
   h1 {
     margin: 0;
+    &:hover {
+      color: darken(white, 7);
+    }
   }
 }

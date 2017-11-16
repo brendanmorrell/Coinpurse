@@ -5,7 +5,7 @@ import numeral from 'numeral';
 
 import { connect } from 'react-redux';
 
-export const ExpenseListItem = ({ id, description, amount, createdAt, expenses }) => {
+export const ExpenseListItem = ({ id, description, amount, createdAt, note, expenses }) => {
   const formattedAmount = numeral(amount / 100).format('$0, 0.00');
 
   // Only show year if different from current year
@@ -32,13 +32,13 @@ export const ExpenseListItem = ({ id, description, amount, createdAt, expenses }
         <h3 className="list-item__title">{ description }</h3>
         <span className="list-item__subtitle">{ dateDisplay }</span>
       </div>
+      {note &&
+        <div className="list-item-note">
+          <span className="list-item__subtitle">{note}</span>
+        </div>}
       <h3 className="list-item__data">{ formattedAmount }</h3>
     </Link>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    expenses: state.expenses,
-  };
-};
+const mapStateToProps = (state) => ({ expenses: state.expenses });
 export default connect(mapStateToProps)(ExpenseListItem);

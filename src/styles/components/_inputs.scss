@@ -1,11 +1,26 @@
 .text-input {
   border: 1px solid #cacccd;
   height: 50px;
+  width:100%;
   font-size: $font-size-large;
   font-weight: $s-weight;
   padding: $s-size;
   @media(max-width: $mobile-breakpoint) {
     width: 100%;
+    height:40px;
+  }
+}
+
+.text-input-minmax {
+  border: 1px solid #cacccd;
+  height: 50px;
+  width:30%;
+  font-size: $font-size-large;
+  font-weight: $s-weight;
+  padding: $s-size;
+  @media(max-width: $mobile-breakpoint) {
+    width: 100%;
+    height:40px;
   }
 }
 
@@ -14,8 +29,13 @@
   @extend .text-input;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
+  &:hover {
+    background-color: darken($light-grey, 6);
+  }
   @media (max-width: $mobile-breakpoint) {
-    width: 80%;
+    width: 70%;
+    padding-bottom: 0;
+    padding-top: 0;
   }
 }
 
@@ -32,8 +52,18 @@
   border-left: none;
   background-size: 100% 100%;
   margin-left: 0;
-  width: 50px;
+  width: 70px;
   height: 50px;
+  &:hover {
+    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('/images/arrow-down.png');
+    border:1px solid #cacccd;
+    border-radius: 0;
+    border-left: none;
+    background-size: 100% 100%;
+    margin-left: 0;
+    width: 70px;
+    height: 50px;
+  }
 }
 .filters-reversed {
   background: url('/images/arrow-up.png');
@@ -42,13 +72,24 @@
   border-left: none;
   background-size: 100% 100%;
   margin-left: 0;
-  width: 50px;
+  width: 70px;
   height: 50px;
+  &:hover {
+    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('/images/arrow-up.png');
+    border:1px solid #cacccd;
+    border-radius: 0;
+    border-left: none;
+    background-size: 100% 100%;
+    margin-left: 0;
+    width: 70px;
+    height: 50px;
+  }
 }
 
 .input-filter-button {
   @media(max-width: $mobile-breakpoint) {
-    width:20%;
+    width:30%;
+    height:40px;
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center center;

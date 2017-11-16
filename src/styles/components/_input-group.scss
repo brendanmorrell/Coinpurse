@@ -1,16 +1,35 @@
 .input-group {
   display: flex;
   flex-direction:row;
-  justify-content: space-between;
+  justify-content:space-between;
   margin: 0;
   @media (max-width: $mobile-breakpoint) {
     flex-direction:column;
   }
 }
 
+.search-div {
+  margin-bottom: $s-size;
+}
+.sdp-div {
+  width: 100%;
+}
+
+.minmax-div {
+  display: flex;
+  flex-direction: row;
+  width:50%;
+  @media(max-width: $mobile-breakpoint){
+    width:100%;
+  }
+}
+
 .input-filter-combo {
-  @extend .input-group;
-  @media (max-width: $mobile-breakpoint) {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  margin-left: $l-size;
+    @media (max-width: $mobile-breakpoint) {
     flex-direction:row;
     width: 100%;
     margin-bottom: $xs-size;
