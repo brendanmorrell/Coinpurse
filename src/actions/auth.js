@@ -14,7 +14,9 @@ export const startLoginGoogle = () => {
 
 export const startLoginFacebook = () => {
   return () => {
-    return firebase.auth().signInWithPopup(facebookAuthProvider);
+    return firebase.auth().signInWithPopup(facebookAuthProvider).catch((e) => {
+      console.log('whoopsy daisy this is your error: ', e);
+    });
   };
 };
 
