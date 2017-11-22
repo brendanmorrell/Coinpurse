@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import validator from 'validator';
 
-import { startLoginGoogle, startLoginFacebook, startLoginEmail, creatLoginEmail } from '../actions/auth';
+import { startLoginGoogle, startLoginFacebook, startLoginEmail, createLoginEmail } from '../actions/auth';
 
 
 export class LoginPage extends React.Component {
@@ -28,22 +28,33 @@ export class LoginPage extends React.Component {
   }
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.startLoginEmailProp(this.state.email, this.state.password).catch((err) => {
+    this.props.startLoginEmailProp(this.state.email, this.state.password).then((resErr) => {
+      throw resErr;
+    }).catch((err) => {
       if (err.code === 'auth/invalid-email') {
         this.setState(() => ({ emailError: 'Invalid email format' }));
       }
       if (this.state.password.length < 6) {
         this.setState(() => ({ passwordError: 'Passwords must be at least six characters' }));
       } else if (err.code !== 'auth/invalid-email' && this.state.password.length >= 6) {
+        if (err.code === 'auth/wrong-password') {
+          return this.props.startLoginGoogleProp();
+        }
         return this.setState(() => ({ generalError: 'Invalid login' }));
       }
       return undefined;
     });
   }
-  onCreatLoginEmail = (e) => {
+  onCreateLoginEmail = (e) => {
     e.preventDefault();
     if (validator.isEmail(this.state.email) && this.state.password.length >= 6) {
-      return this.props.creatLoginEmailProp(this.state.email, this.state.password);
+      return this.props.createLoginEmailProp(this.state.email, this.state.password).then((resErr) => {
+        if (resErr.code === 'auth/email-already-in-use') {
+          console.log('sahdgsjfgkksdjhfgdhjsagfjdgsahjfasdjfkghsad');
+          return this.props.startLoginGoogleProp();
+        }
+        return undefined;
+      });
     }
     if (!validator.isEmail(this.state.email)) {
       this.setState(() => ({ emailError: 'Invalid email' }));
@@ -89,7 +100,7 @@ export class LoginPage extends React.Component {
               </button>
               <button
                 className="button-login"
-                onClick={this.onCreatLoginEmail}
+                onClick={this.onCreateLoginEmail}
               >
                 Create Account
               </button>
@@ -111,7 +122,7 @@ const mapDispatchToProps = (dispatch) => ({
   startLoginGoogleProp: () => dispatch(startLoginGoogle()),
   startLoginFacebookProp: () => dispatch(startLoginFacebook()),
   startLoginEmailProp: (email, password) => dispatch(startLoginEmail(email, password)),
-  creatLoginEmailProp: (email, password) => dispatch(creatLoginEmail(email, password)),
+  createLoginEmailProp: (email, password) => dispatch(createLoginEmail(email, password)),
 });
 
 export default connect(undefined, mapDispatchToProps)(LoginPage);

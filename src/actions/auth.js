@@ -1,6 +1,6 @@
 import { firebase, googleAuthProvider, facebookAuthProvider } from '../firebase/firebase';
 
-let triedGoogle, triedFacebook, triedEmail = false;
+let triedGoogle, triedFacebook = false;
 
 export const login = (uid, currentUser) => ({
   type: 'LOGIN',
@@ -13,6 +13,7 @@ export const startLoginGoogle = () => {
     return firebase.auth().signInWithPopup(googleAuthProvider).catch((e) => {
       if (e.code === 'auth/account-exists-with-different-credential') {
         if (!triedFacebook) {
+          triedFacebook = true;
           return firebase.auth().signInWithPopup(facebookAuthProvider);
         } else if (triedFacebook) {
           return undefined;// change this to trying email
@@ -28,6 +29,7 @@ export const startLoginFacebook = () => {
     return firebase.auth().signInWithPopup(facebookAuthProvider).catch((e) => {
       if (e.code === 'auth/account-exists-with-different-credential') {
         if (!triedGoogle) {
+          triedGoogle = true;
           return firebase.auth().signInWithPopup(googleAuthProvider);
         } else if (triedGoogle) {
           return undefined;// change this to trying email
@@ -39,15 +41,19 @@ export const startLoginFacebook = () => {
 };
 
 
-export const creatLoginEmail = (email, password) => {
+export const createLoginEmail = (email, password) => {
   return () => {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    return firebase.auth().createUserWithEmailAndPassword(email, password).catch((e) => {
+      return e;
+    });
   };
 };
 
 export const startLoginEmail = (email, password) => {
   return () => {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+    return firebase.auth().signInWithEmailAndPassword(email, password).catch((e) => {
+      return e;
+    });
   };
 };
 
