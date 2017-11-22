@@ -28,9 +28,11 @@ export const ExpenseListItem = ({ id, description, amount, createdAt, note, expe
 
   return (
     <Link className="list-item" to={`/edit/${id}`}>
-      <div>
+      <div
+        className="list-item-div-one"
+      >
         <h3 className="list-item__title">{ description }</h3>
-        <span className="list-item__subtitle">{ dateDisplay }</span>
+        <h3 className="list-item__subtitle">{ dateDisplay }</h3>
       </div>
       {note &&
         <div className="list-item-note">

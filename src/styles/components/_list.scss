@@ -34,6 +34,20 @@
   }
 }
 
+
+.list-item-div-one {
+  width: 30%;
+  @media(max-width: $mobile-breakpoint) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    h3 {
+      align-self: center;
+    }
+  }
+}
+
 .list-item--message {
   @extend .list-item;
   align-items: center;
@@ -53,6 +67,7 @@
 .list-item__subtitle {
   color: $grey;
   font-size: $font-size-small;
+  font-weight: 400;
 }
 
 .list-item__data {
