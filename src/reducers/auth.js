@@ -3,6 +3,7 @@ export default (state = {}, action) => {
     case 'LOGIN':
       return {
         uid: action.uid,
+        currentUser: action.currentUser,
       };
     case 'LOGOUT':
       return {};

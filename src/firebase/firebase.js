@@ -12,14 +12,14 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+const emailProvider = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
+const emailLogin = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-facebookAuthProvider.setCustomParameters({
-  prompt: 'select_account',
-});
 googleAuthProvider.setCustomParameters({
   prompt: 'select_account',
 });
 
-export { firebase, facebookAuthProvider, googleAuthProvider, database as default };
+
+export { firebase, facebookAuthProvider, googleAuthProvider, emailProvider, emailLogin, database as default };
