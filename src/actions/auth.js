@@ -35,7 +35,7 @@ export const startLoginFacebook = () => {
           return console.log(`Error: ${e}`);
         }
       }
-      return console.log(`Error: ${e}`);
+      return console.log(`Error77777: ${e}`);
     });
   };
 };
