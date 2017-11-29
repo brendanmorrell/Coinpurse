@@ -32,7 +32,7 @@ export const startLoginFacebook = () => {
           triedGoogle = true;
           return firebase.auth().signInWithPopup(googleAuthProvider);
         } else if (triedGoogle) {
-          return undefined;// change this to trying email
+          return console.log(`Error: ${e}`);
         }
       }
       return console.log(`Error: ${e}`);
