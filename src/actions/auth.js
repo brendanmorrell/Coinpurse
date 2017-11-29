@@ -32,14 +32,18 @@ export const startLoginFacebook = () => {
           triedGoogle = true;
           return firebase.auth().signInWithPopup(googleAuthProvider);
         } else if (triedGoogle) {
-          return undefined;
+          return console.log('77777');
         }
         console.log('There was an error signing in with facebook so you have been redirected to google sign-in.');
         console.log(e);
         return firebase.auth().signInWithPopup(googleAuthProvider);
       }
+      console.log('There was an error signing in with facebook so you have been redirected to google sign-in.');
+      console.log(e);
       return firebase.auth().signInWithPopup(googleAuthProvider);
     });
+    // console.log('There was an error signing in with facebook so you have been redirected to google sign-in.');
+    // return firebase.auth().signInWithPopup(googleAuthProvider);
   };
 };
 
