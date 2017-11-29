@@ -5170,9 +5170,9 @@ react-dom@^16.0.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-modal@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.0.4.tgz#61f3c9a701b27d2015fe5ac0c419e3c977e4092a"
+react-modal@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.1.4.tgz#eea7369ea4f05ab2897ccca2c676d7d81a5a88b0"
   dependencies:
     exenv "^1.2.0"
     prop-types "^15.5.10"

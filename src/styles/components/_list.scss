@@ -86,6 +86,9 @@
   max-width: 40%;
   overflow-y: scroll;
   word-break: break-all;
+  @media(max-width: $mobile-breakpoint) {
+    max-width: 80%;
+  }
 }
 
 .note-header {

@@ -2,17 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ExpenseForm from './ExpenseForm';
-import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import DeleteModal from './DeleteModal';
+import { startEditExpense } from '../actions/expenses';
+import { toggleModal } from '../actions/modal';
 
 
 export class EditExpensePage extends React.Component {
   onSubmit = (expense) => {
-    this.props.startEditExpense(this.props.expense.id, expense);// here and below we can use props.match or props.expense since they are both being sent into the EditExpensePage component
+    const { id } = this.props.expense;
+    this.props.startEditExpense(id, expense);// here and below we can use props.match or props.expense since they are both being sent into the EditExpensePage component
     this.props.history.push('/dashboard');
   };
-  onRemove = () => {
-    this.props.startRemoveExpense(this.props.expense.id);
-    this.props.history.push('/dashboard');
+  onDelete = () => {
+    const { modal } = this.props;
+    console.log(modal);
+    this.props.startToggleModal(!modal);
   };
   render() {
     return (
@@ -30,22 +34,26 @@ export class EditExpensePage extends React.Component {
           />
           <button
             className="button button--secondary"
-            onClick={this.onRemove}
+            onClick={this.onDelete}
           >Delete Expense
           </button>
+          {this.props.pushTD && this.props.history.push('/dashboard')}
+          {this.props.modal && <DeleteModal id={this.props.expense.id} />}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, props) => ({ expense: state.expenses.find((expense) => expense.id === props.match.params.id) });
+const mapStateToProps = (state, props) => ({
+  expense: state.expenses.find((expense) => expense.id === props.match.params.id),
+  modal: state.modal.modal,
+  pushTD: state.modal.pushTD,
+});
 
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    startEditExpense: (id, expense) => dispatch(startEditExpense(id, expense)),
-    startRemoveExpense: (id) => dispatch(startRemoveExpense(id)),
-  };
-};
+const mapDispatchToProps = (dispatch, props) => ({
+  startEditExpense: (id, expense) => dispatch(startEditExpense(id, expense)),
+  startToggleModal: (modal) => dispatch(toggleModal(modal)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);

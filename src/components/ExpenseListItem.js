@@ -5,7 +5,9 @@ import numeral from 'numeral';
 
 import { connect } from 'react-redux';
 
-export const ExpenseListItem = ({ id, description, amount, createdAt, note, expenses }) => {
+import { pushToDashboard } from '../actions/modal';
+
+export const ExpenseListItem = ({ id, description, amount, createdAt, note, expenses, pushToDashboardProp }) => {
   const formattedAmount = numeral(amount / 100).format('$0, 0.00');
 
   // Only show year if different from current year
@@ -27,7 +29,7 @@ export const ExpenseListItem = ({ id, description, amount, createdAt, note, expe
   }
 
   return (
-    <Link className="list-item" to={`/edit/${id}`}>
+    <Link className="list-item" to={`/edit/${id}`} onClick={pushToDashboardProp}>
       <div
         className="list-item-div-one"
       >
@@ -43,4 +45,5 @@ export const ExpenseListItem = ({ id, description, amount, createdAt, note, expe
   );
 };
 const mapStateToProps = (state) => ({ expenses: state.expenses });
-export default connect(mapStateToProps)(ExpenseListItem);
+const mapDispatchToProps = (dispatch) => ({ pushToDashboardProp: () => dispatch(pushToDashboard(false)) });
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListItem);

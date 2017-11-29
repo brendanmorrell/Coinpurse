@@ -64,6 +64,7 @@
     "react/jsx-indent": "warn",
     "react/jsx-tag-spacing": 1,
     "react/no-unescaped-entities": 1,
+    "react/no-unused-state": 1,
     "react/prop-types": "off",
 
 

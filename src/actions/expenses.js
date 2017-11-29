@@ -30,7 +30,6 @@ export const startAddExpense = (expenseData = {}) => {
       amount = 0,
       createdAt = 0,
     } = expenseData;
-
     const expense = { description, note, amount, createdAt };
 
     return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => { // the return is for promise chaining in the test file
@@ -47,6 +46,7 @@ export const removeExpense = id => ({
   type: 'REMOVE_EXPENSE',
   id,
 });
+
 
 export const startRemoveExpense = id => {
   return (dispatch, getState) => {
