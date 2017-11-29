@@ -14,7 +14,7 @@ export const Header = ({ dispatchStartLogoutProp, currentUser }) => (
         </NavLink>{/* DOn''t use it here, but NavLink has a bunch of different props that allow you to manipulate the link in cool ways */}
         <div className="header_logout-justify">
           <span className="header__displayName">{currentUser.displayName || currentUser.email}</span><br />
-          <button className="button button--link header_logout-justify" onClick={dispatchStartLogoutProp}> Logout</button>
+          <button className="button button--link" onClick={dispatchStartLogoutProp}> Logout</button>
         </div>
       </div>
     </div>
