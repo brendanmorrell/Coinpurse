@@ -2,7 +2,7 @@
 @import './base/settings';
 @import './base/base';
 @import './components/box-layout';
-@import'./components/button';
+@import './components/button';
 @import './components/header';
 @import './components/content-container';
 @import './components/page-header';
@@ -14,4 +14,4 @@
 @import './components/loader';
 @import './components/modal';
 
-@import '../../node_modules/react-dates/lib/css/_datepicker.css'// the relevant styling provided by airbnb
+@import '../../node_modules/react-dates/lib/css/_datepicker.css';

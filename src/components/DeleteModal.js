@@ -29,7 +29,7 @@ export class DeleteModal extends React.Component {
           contentLabel="Modal"
         >
           <h3 className="modal__title">Are you sure you want to delete this expense?</h3>
-          <div className="modal-div">
+          <div className="input-group__row">
             <button className="button" onClick={this.onRemoveExpense}>Yes</button>
             <button className="button" onClick={this.doNotRemoveExpense}>No</button>
           </div>

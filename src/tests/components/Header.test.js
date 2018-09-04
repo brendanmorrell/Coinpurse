@@ -27,7 +27,7 @@ test('should render Header correctly', () => {
   // REACTSHALLOW RENDER SETUP (the code below is basic, and you don't need to wrapper line, above. Also not very useful. Enzyme is much better)
 
   //  expect(wrapper.find('h1').length).toBe(1);
-  //  expect(wrapper.find('h1').text()).toBe('Expensify!');
+  //  expect(wrapper.find('h1').text()).toBe('Coinpurse!');
 
   // ENZYME SETUP EXAMPLE
   // expect(toJSON(wrapper)).toMatchSnapshot();// using this with enzyme now adds a bunch of enzyme scripot into the snapshot, which we don't want because if the enzyme script changes, it will say the snapshot doesn't match, even if what we actually rendered didn't change. Thus, we need to add a library called enzyme-to-json and use it when we are expecting something about our enzyme wrapper

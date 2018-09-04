@@ -20,7 +20,7 @@ app.listen(port, () => {
 // heroku stuff
 // heroku --version (gives you your version)
 // heroku login (enter username and password to login)
-// heroku create expensify (create an app with the name 'expensify')
+// heroku create coinpurse (create an app with the name 'coinpurse')
 
 // from here, heroku creates the link to the app on heroku as well as a github link for the heroku files (so now, if you run 'git remote' you'll have heroku and origin, as opposed to just origin). when you push to your heroku git, heroku is able to grab the files from there to generate your app
 

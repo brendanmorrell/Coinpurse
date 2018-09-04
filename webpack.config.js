@@ -1,6 +1,3 @@
-// need to tell it the entry point and the output (app.js in src, and the one big js file in public next to index.html)
-// dirname gives the absolute path to the file
-// path is a node module that helps take a bunch of data and concatenate it into actual cross-platform/os compatible file paths while also eliminating redundancies (like if you concatenated '../' whatever the previous path piece was would automatically be removed)
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');// this is a module that takes all the css out of thebundle.js file and puts it in a separate file. we define how this i sdone below
 const webpack = require('webpack');

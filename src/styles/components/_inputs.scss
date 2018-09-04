@@ -39,6 +39,12 @@
   }
 }
 
+.select-mozilla {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .text-area {
   @extend .text-input;
   height: 10rem;

@@ -91,7 +91,7 @@ export class ExpenseListFilters extends React.Component {
               />
               <div className="input-filter-combo">
                 <select
-                  className="select"
+                  className="select select-mozilla"
                   value={this.props.filters.sortBy}
                   onChange={this.onSortTypeChange}
                 >

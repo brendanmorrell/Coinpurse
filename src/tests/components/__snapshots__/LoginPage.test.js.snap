@@ -10,7 +10,7 @@ exports[`should render LoginPage 1`] = `
     <h1
       className=".box-layout__title"
     >
-      Expensify
+      Coinpurse
     </h1>
     <p>
       It's time to get your expenses under control.

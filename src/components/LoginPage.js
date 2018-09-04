@@ -68,7 +68,7 @@ export class LoginPage extends React.Component {
     return (
       <div className="box-layout">
         <div className="box-layout__box">
-          <h1 className=".box-layout__title">Expensify</h1>
+          <h1 className=".box-layout__title">Coinpurse</h1>
           <p>It&apos;s time to get your expenses under control.</p>
           <form
             onSubmit={this.onSubmit}
